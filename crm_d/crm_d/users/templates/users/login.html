@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset-utf="8">
+
+
+<link rel="stylesheet" href="{% static 'users/login.css' %}">
+
+<div class="log-image" style = "position:relative; left:120px;" z-index="-1">
+<img  src={% static 'users/images/logo.jpg' %} alt="companies-logo" width="60"  height="60" >
+    </div>
+<div class="login-form">
+    <form  method="post" ">
+        {% csrf_token %}
+                 
+    
+                  <div class="form-group">
+              <p><section id="welcome">welcome back   &#128075</section>  
+                 
+           
+      <section id="line2"> Enter your details to login</section></p>  
+        </div>
+              <div class="messages">
+               {% if error_message %}
+                 {% for message in error_message %}
+                     {{ message }}
+                  {% endfor%}
+               {%endif%}
+             </div>
+               <label class="label" for="username" id="username">username :</label>
+          <div class="form-group">   
+       <input  class="input" type="text" id="username"   name="username"  required>
+             </div>  
+               <label class="label" for="input" id="password" required>password :</label>                
+            <div class="form-group">
+            <input class="input" type="password" id="password" name="password" required><br>
+             </div>
+             <div class="form-group">
+            
+            <button id="input-button" type="submit">Login</button><br>
+        </div>
+
+</form>
+</div>
+  <footer>
+  <div class="container-foot">
+    <div class="logo-ag">
+      <img src="your-logo-image.jpg" alt="Your Logo">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="https://www.sparkleonlinesolutions.com">
+Powered by : Sparkle Online Solutions|system development team|</a></li>
+      <li>&copy; Sparkle Online Solutions LLP</li>
+   </ul>
+    </nav>
+  </div>
+</footer>
+       
+    

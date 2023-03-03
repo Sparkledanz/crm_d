@@ -1,0 +1,57 @@
+{% extends "users/base.html" %}
+{% block content %}
+   <form method="POST" action={% url "employee" %}>
+           {% csrf_token %}
+
+
+
+
+           <table>
+                <tr>
+
+                     <th> Name</th>
+                      <th>Passport No.</th>
+                      <th> Date Traveled</th>
+                       <th> Contact</th>
+                       <th> Country</th>
+                       <th> Country Outside</th>
+                       <th>Notes </th>
+                    </tr>
+                          {% for item in results %}
+           <tr>
+           <td>{{ item.field1 }}</td>
+              <td>{{ item.field2 }}</td>
+             <td><input type="checkbox" name="item_ids[]" value="{{ item.id }}"></td>
+                </tr>
+                 {% endfor %}
+
+                   <tr>
+                  <div class="form-row">
+                  {% for field in form %}
+                      <td> {{field}}</td>
+
+                  </div>
+                    {% endfor%}
+                   <td><input type="submit" value="submit""></td>
+                  </tr>
+
+                  {% for data in employees %}
+                     <tr>
+
+                       <td> {{data.name}}</td>
+                        <td> {{data.passport_number}}</td>
+                        <td> {{data.Date_traveled}}</td>
+                        <td> {{data.contact}}</td>
+                        <td> {{data.Date}}</td>
+                       <td> {{data.contact}}</td>
+                       <td>{{data.country}}</td>
+                       <td>{{data.notes}}</td>
+                         <td><button class="delete-btn" data-id="{{ data.id }}">Delete</button>
+                            <button class="update-btn" data-id="{{ data.id }}">Update</button>
+                             </td>
+                     {% endfor %}
+                   </tr>
+
+
+                 </table>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "users/base.html" %}
+{% block content %}      
+   <form method="POST" action={% url "employee" %}>
+           {% csrf_token %}
+              
+            
+             
+        
+           <table>
+                <tr>
+                 
+                     <th> Name and surname</th> 
+                      <th>Passport No.</th>
+                      <th> sex</th>
+                       <th> Nationality</th>
+                       <th> position</th>
+                       <th> Work permit status</th>
+                       <th>Work permit status-update </th>
+                    </tr>
+                          {% for item in results %}
+           <tr>
+           <td>{{ item.field1 }}</td>
+              <td>{{ item.field2 }}</td>
+             <td><input type="checkbox" name="item_ids[]" value="{{ item.id }}"></td>
+                </tr>
+                 {% endfor %}
+
+                   <tr>
+                  <div class="form-row">
+                  {% for field in form %}
+                      <td> {{field}}</td>
+                        
+                  </div>
+                    {% endfor%}
+                   <td><input type="submit" value="submit""></td>
+                  </tr>
+                   
+                  {% for data in employees %}
+                     <tr>                      
+                           
+                       <td> {{data.employee_name}}</td>
+                        <td> {{data.passport_number}}</td>
+                        <td> {{data.sex}}</td>
+                        <td> {{data.nationality}}</td>
+                        <td> {{data.country}}</td>
+                       <td> {{data.work_permit_status}}</td>
+                       <td>{{data.work_permit_date}}</td>
+                        <td>
+                         <button class="delete-btn" data-id="{{ data.id }}">Delete</button>
+                            <button class="update-btn" data-id="{{ data.id }}">Update</button>
+                          </td>
+                     {% endfor %}
+                   </tr>     
+
+
+                 </table>
+{% endblock %}
+  

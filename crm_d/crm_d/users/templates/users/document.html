@@ -1,0 +1,45 @@
+
+{% extends "users/base.html"%}
+{% block content%}
+
+
+       <form method="POST" action={% url "documents" %}>
+           {% csrf_token %}
+
+
+
+
+           <table>
+                <tr>
+
+                     <th> Passport photo</th>
+                      <th>Cv</th>
+                      <th> photo</th>
+                       <th> Employee Name</th>
+                       
+                    </tr>
+                   <tr>
+                  <div class="form-row">
+                  {% for field in form %}
+                      <td> {{field}}</td>
+
+                  </div>
+                    {% endfor%}
+                   <td><input type="submit" value="submit""></td>
+                  </tr>
+
+                  {% for data in document %}
+                     <tr>
+
+                       <td> {{data.passport_photo}}</td>
+                        <td> {{data.cv}}</td>
+                        <td> {{data.photo}}</td>
+                        <td> {{data.employee_name}}</td>
+                        
+                     {% endfor %}
+                   </tr>
+
+
+                 </table>
+
+{% endblock %}

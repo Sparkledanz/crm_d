@@ -1,0 +1,46 @@
+{% extends "users/base.html" %}
+{% block content%}
+  <form method="POST" action={% url "partner" %}>
+           {% csrf_token %}
+
+           <table>
+                <tr>
+
+                     <th> Partner Name</th>
+                      <th>Total Amount</th>
+                      <th> Paid</th>
+                       <th> Left to pay</th>
+                       <th> rate before starting</th>
+                       <th> rate ready</th>
+                       <th>rate visa </th>
+                    </tr>
+                   <tr>
+                  <div class="form-row">
+                  {% for field in form %}
+                      <td> {{field}}</td>
+
+                  </div>
+                    {% endfor%}
+                   <td><input type="submit" value="submit""></td>
+                  </tr>
+
+                  {% for data in partner %}
+                     <tr>
+
+                       <td> {{data.partner_name}}</td>
+                        <td> {{data.total_amount}}</td>
+                        <td> {{data.paid}}</td>
+                        <td> {{data.left_to_pay}}</td>
+                        <td> {{data.rate_before_starting}}</td>
+                       <td> {{data.rate_ready}}</td>
+                       <td>{{data.rate_visa}}</td>
+                       <td><button class="delete-btn" data-id="{{ data.id }}">Delete</button>
+                            <button class="update-btn" data-id="{{ data.id }}">Update</button>
+                             </td>
+                      {% endfor %}
+                   </tr>
+
+
+                 </table>
+
+ {% endblock %}

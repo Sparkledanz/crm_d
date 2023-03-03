@@ -1,0 +1,28 @@
+{% extends 'users/base1.html' %}
+{% load static %}   
+        {% block content %}        
+ 
+        <!-- Add your footer content here -->
+   </body>
+</html>
+</div>
+<div class="user-d-profile">
+ <div class="partner-profile">
+        <img src="users/images/IMG-20230226-WA0016.jpg" alt="profile-pic" width="80" height="100">
+
+
+</div>
+<h>partner</h>
+
+<h1>{{ items.partner_name }}</h1>
+<div class="user-pr">
+  <ul>
+     <li>Total paid: {{ items.total_amount }}</li>
+    <li>Paid: {{ items.paid }}</li>
+    <li>Amount Left to pay: {{ items.left_to_pay }}</li>
+    <li> Rate before starting:{{items.rate_before_starting}}</li>
+  </ul>
+</div>
+
+{% endblock %}
+

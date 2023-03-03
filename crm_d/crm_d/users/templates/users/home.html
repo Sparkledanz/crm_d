@@ -1,0 +1,261 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block content %}
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+</head>
+
+  <h1>Dashboard</h1>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Partners</h2>
+      <canvas id="partners-chart"></canvas>
+      <p>Total Partners: {{ partners }}</p>
+    </div>
+    <div class="col-md-4">
+      <h2>Employees</h2>
+      <canvas id="employees-chart"></canvas>
+      <p>Total Employees: {{ employees }}</p>
+    </div>
+    <div class="col-md-4">
+      <h2>Employers</h2>
+      <canvas id="employers-chart"></canvas>
+      <p>Total Employers: {{ employers }}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Employee Countries</h2>
+      <canvas id="employee-countries-chart"></canvas>
+    </div>
+  </div>
+
+  
+<canvas id="employee-chart"></canvas>
+
+
+<script>
+  // Retrieve data from the Employee model
+  var employeeData = [
+    {% for e in employee_data %}
+      { x: "{{ e.Date }}", y: {{ e.count }} },
+    {% endfor %}
+  ];
+
+  // Create a new chart instance
+  var employeeChart = new Chart(document.getElementById('employee-chart'), {
+    type: 'line',
+    data: {
+      datasets: [{
+        label: 'Number of Employees',
+        data: employeeData,
+        borderColor: 'blue',
+        fill: false
+      }]
+    },
+    options: {
+      scales: {
+        xAxes: [{
+          type: 'time',
+          time: {
+            unit: 'month',
+            displayFormats: {
+              month: 'MMM YYYY'
+            }
+          },
+          scaleLabel: {
+            display: true,
+            labelString: 'Date'
+          }
+        }],
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Number of Employees'
+          }
+        }]
+      }
+    }
+  });
+</script>
+
+
+
+<canvas id="partner-chart"></canvas>
+
+
+<script>
+  // Retrieve data from the Partner model
+  var partnerData = [
+    {% for p in partner_data %}
+      { x: "{{ p.Date }}", y: {{ p.count }} },
+    {% endfor %}
+  ];
+
+  // Create a new chart instance
+  var partnerChart = new Chart(document.getElementById('partner-chart'), {
+    type: 'line',
+    data: {
+      datasets: [{
+        label: 'Number of Partners',
+        data: partnerData,
+        borderColor: 'green',
+        fill: false
+      }]
+    },
+    options: {
+      scales: {
+        xAxes: [{
+          type: 'time',
+          time: {
+            unit: 'month',
+            displayFormats: {
+              month: 'MMM YYYY'
+            }
+          },
+          scaleLabel: {
+            display: true,
+            labelString: 'Date'
+          }
+        }],
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Number of Partners'
+          }
+        }]
+      }
+    }
+  });
+</script>
+
+
+<canvas id="employer-chart"></canvas>
+
+
+<script>
+  // Retrieve data from the Employer model
+  var employerData = [
+    {% for er in employer_data %}
+      { x: "{{ er.Date }}", y: {{ er.count }} },
+    {% endfor %}
+  ];
+
+  // Create a new chart instance
+  var employerChart = new Chart(document.getElementById('employer-chart'), {
+    type: 'line',
+    data: {
+      datasets: [{
+        label: 'Number of Employers',
+        data: employerData,
+        borderColor: 'orange',
+        fill: false
+      }]
+    },
+    options: {
+      scales: {
+        xAxes: [{
+          type: 'time',
+          time: {
+            unit: 'month',
+            displayFormats: {
+              month: 'MMM YYYY'
+            }
+          },
+          scaleLabel: {
+            display: true,
+            labelString: 'Date'
+          }
+        }],
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Number of Employers'
+          }
+        }]
+      }
+    }
+  });
+</script>
+
+<!-- HTML code for the pie chart -->
+<canvas id="country-chart"></canvas>
+
+
+<script>
+  // Retrieve data from the Employee model
+  var countryData = [
+    {% for c in country_data %}
+      { label: "{{ c.country }}", value: {{ c.count }} },
+    {% endfor %}
+  ];
+
+  // Create a new chart instance
+  var countryChart = new Chart(document.getElementById('country-chart'), {
+    type: 'pie',
+    data: {
+      datasets: [{
+        data: countryData.map(function(d) { return d.value; }),
+        backgroundColor: [
+          '#FF6384',
+          '#36A2EB',
+          '#FFCE56',
+          '#8E44AD',
+          '#2ECC71'
+        ]
+      }],
+      labels: countryData.map(function(d) { return d.label; })
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Country Distribution of Employees'
+      }
+    }
+  });
+</script>
+
+
+<!-- HTML code for the pie chart -->
+<canvas id="country-chart"></canvas>
+
+<!-- JavaScript code to create the pie chart using Chart.js -->
+<script>
+  // Retrieve data from the Employee model
+  var countryData = [
+    {% for c in country_data %}
+      { label: "{{ c.country }}", value: {{ c.count }} },
+    {% endfor %}
+  ];
+
+  // Define an array of colors for the pie slices
+  var colors = [
+    '#FF6384',
+    '#36A2EB',
+    '#FFCE56',
+    '#8E44AD',
+    '#2ECC71'
+  ];
+
+  // Create a new chart instance
+  var countryChart = new Chart(document.getElementById('country-chart'), {
+    type: 'pie',
+    data: {
+      datasets: [{
+        data: countryData.map(function(d) { return d.value; }),
+        backgroundColor: colors.slice(0, countryData.length)
+      }],
+      labels: countryData.map(function(d) { return d.label; })
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Country Distribution of Employees'
+      }
+    }
+  });
+</script>
+
+{% endblock %}

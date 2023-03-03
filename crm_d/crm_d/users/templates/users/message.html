@@ -1,0 +1,17 @@
+<form method="POST">
+  {% csrf_token %}
+  <label for="message">Message:</label><br>
+  <textarea id="message" name="message"></textarea><br>
+  <button type="submit">Send</button>
+</form>
+
+<h1>Received Messages</h1>
+{% if messages %}
+{% for message in messages %}
+<p>From: {{ message.sender.username }}<br>
+  Content: {{ message.content }}</p>
+    {% endfor %}
+   {% else %}
+   <p>No messages received yet.</p>
+ {% endif %}
+ {% endblock %}

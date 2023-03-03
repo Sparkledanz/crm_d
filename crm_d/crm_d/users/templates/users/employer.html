@@ -1,0 +1,44 @@
+{% extends "users/base.html" %}
+{% block content %}     
+    <form method="POST" action={% url "employer" %}>
+           {% csrf_token %}
+
+
+
+
+           <table>
+                <tr>
+
+                     <th> Employer name</th>
+                      <th>Position</th>
+                      <th> Employee name</th>
+                       
+                    </tr>
+                   <tr>
+                  <div class="form-row">
+                  {% for field in form %}
+                      <td> {{field}}</td>
+
+                  </div>
+                    {% endfor%}
+                   <td><input type="submit" value="submit""></td>
+                  </tr>
+
+                  {% for data in employer %}
+                     <tr>
+
+                       <td> {{data.employer_name}}</td>
+                        <td> {{data.position}}</td>
+                        <td> {{data.employee_name}}</td>
+
+                          <td><button class="delete-btn" data-id="{{ data.id }}">Delete</button>
+                            <button class="update-btn" data-id="{{ data.id }}">Update</button>
+                                <td>                        
+                     {% endfor %}
+                   </tr>
+
+
+                 </table>
+{% endblock %}
+    </body>
+</html>

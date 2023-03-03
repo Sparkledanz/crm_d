@@ -1,0 +1,9 @@
+{% for post in posts %}
+<tr>
+  <td><input type="checkbox" name="selected" value="{{ post.id }}"></td>
+  <td>{{ post.title }}</td>
+  <td>{{ post.author }}</td>
+  <td>{{ post.created_at }}</td>
+  <td><a href="{% url 'post_detail' post.id %}">View</a></td>
+</tr>
+{% endfor %}

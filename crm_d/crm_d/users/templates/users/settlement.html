@@ -1,0 +1,44 @@
+{% extends "users/base.html" %} 
+{% block content %}
+    <form method="POST" action={% url "settlement" %}>
+           {% csrf_token %}
+
+
+
+
+           <table>
+                <tr>
+
+                     <th>Partner Name</th>
+                      <th>Settlement date</th>
+                      <th> Amount</th>
+                       <th> Settlement Name</th>
+       
+                    </tr>
+                   <tr>
+                  <div class="form-row">
+                  {% for field in form %}
+                      <td> {{field}}</td>
+
+                  </div>
+                    {% endfor%}
+                   <td><input type="submit" value="submit""></td>
+                  </tr>
+
+                  {% for data in settlement %}
+                     <tr>
+
+                       <td> {{data.partner_name}}</td>
+                        <td> {{data.settlement_date}}</td>
+                        <td> {{data.amount}}</td>
+                        <td> {{data.settlement_name}}</td>
+                       <td><button class="delete-btn" data-id="{{ data.id }}">Delete</button>
+                            <button class="update-btn" data-id="{{ data.id }}">Update</button>
+                             </td>
+                     {% endfor %}
+                   </tr>
+
+
+                 </table>
+
+  {% endblock %}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'users/style2.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+ </head>
+<body>
+    <header>
+        <!-- Add your header content here -->
+    </header>
+
+<div class="nav-links">
+   <ul>
+    <li><a href="{% url 'profile' username=partner %}">Profile</a></li>
+    <li><a href="{% url 'message' username=partner  %}">Messages</a></li>
+     <li><a href="{% url 'logout' %}">Signout</li>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <div class="container-foot">
+    <div class="logo-ag">
+      <img src="your-logo-image.jpg" alt="Your Logo">
+    </div>
+    
+<footer>
+  <div class="container-foot">
+    <div class="logo-ag">
+      <img src="your-logo-image.jpg" alt="Your Logo">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="https://www.sparkleonlinesolutions.com">
+Powered by : Sparkle Online Solutions|system development team|</a></li>
+      <li>&copy; Sparkle Online Solutions LLP</li>
+   </ul>
+    </nav>
+  </div>                                                                                </footer>
+</footer>

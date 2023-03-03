@@ -1,0 +1,18 @@
+{% extends 'users/base1.html' %}
+
+{% block content %}
+  <h1>Send Message to Admin</h1>
+      <h2>Messages from Admin:</h2>
+  {% for message in messages %}
+    <div>{{ message.message }}</div>
+    <p><small>Sent on {{ message.date_sent }}</small></p>
+  {% empty %}
+    <p>No messages yet.</p>
+  {% endfor %}
+  <hr>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Send</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,21 @@
+<!-- send_message_as_admin.html -->
+{% extends 'users/base.html' %}
+
+{% block content %}
+  <h1>Send Message as Admin</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Send</button>
+  </form>
+  <h2>Messages Sent</h2>
+  {% if messages %}
+    <ul>
+    {% for message in messages %}
+      <li>{{ message.date_sent }} - {{ message.partner.username }} - {{ message.message }}</li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>No messages sent.</p>
+  {% endif %}
+{% endblock %}

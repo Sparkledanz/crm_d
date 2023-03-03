@@ -1,0 +1,11 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+  <h2>Update Employer</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-warning btn-rounded">Update</button>
+    <a href="{% url 'delete_employer' employer_id %}" class="btn btn-danger btn-rounded>
+  </form>
+{% endblock %}

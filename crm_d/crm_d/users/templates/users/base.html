@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+     <link rel="stylesheet" href="{% static 'users/style.css' %}">      
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>{% block title %}{% endblock %}</title>
+
+
+</head>
+<body>
+ <div class="column-view">
+      <div class="logo">
+            <img src={% static "users/images/logo.jpg"%} alt="companies-logo" width=60 height=50 >
+   
+       </div>
+      <div class="search-bar">
+        <form method="get" action="{% url 'search' %}">
+          <input type="text" name="q" placeholder="Search...">
+         <select name="model">
+          <option value="Employee">Employee</option>
+          <option value="Employer">Employer</option>
+           <option value="Settlement">Settlement</option>
+         <option value="Partner">Partner</option>
+   </select>
+    <button type="submit">Search</button>
+</form>
+
+     </div>
+      <div id="profiles">  
+          <a href="{% url 'logout' %}">Logout</a>
+           
+    </div>
+ </div>
+  <div class="container-fluid">
+      <div class="col-links">
+        <div class="image-cont">
+                  <a href={% url "home" %}><img src={% static  "users/images/IMG-20230226-WA0014-removebg-preview.png" %} width="40" height="40"></a>
+             </div>
+             <div class="image-cont">
+                  <a href={% url "notification" %}><img src={% static "users/images/IMG-20230226-WA0012-removebg-preview.png" %} width="40" height="40"></a>
+             </div>
+              <div class="image-cont">
+                 <a href={% url "employer" %}><img src={% static "users/images/IMG-20230226-WA0020-removebg-preview.png" %} width="40" height="40"></a>
+                </div>
+              <div class="image-cont">
+                <a href={% url "employee" %}><img src={% static "users/images/IMG-20230226-WA0015-removebg-preview.png" %} width="40" height="40"></a>
+             </div>
+             <div class="image-cont">
+             <a href={% url "documents" %}><img src={% static "users/images/IMG-20230226-WA0022-removebg-preview.png" %} width="40" height="40"></a>
+                 <a href={% url "partner" %}><img src={% static "users/images/IMG-20230226-WA0017-removebg-preview.png" %} width="40" height="40"></a>
+              </div>
+               <div class="image-cont">
+                
+        <a href={% url "settlement" %}><img src={% static  "users/images/IMG-20230226-WA0013-removebg-preview.png" %} width="40" height="40"></a>
+                
+        </div>
+              <a href={% url "travel" %}><img src={% static  "users/images/IMG-20230226-WA0010-removebg-preview.png" %} width="40" height="40"></a>
+             </div>
+                 
+                     
+</div></div>
+    <div class="content">
+         {%block content%}{%endblock%}
+         </div>     
+      <footer>
+  <div class="container-foot">
+    <div class="logo-ag">
+      <img src="your-logo-image.jpg" alt="Your Logo">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="https://www.sparkleonlinesolutions.com">
+Powered by : Sparkle Online Solutions|system development team|</a></li>
+      <li>&copy; Sparkle Online Solutions LLP</li>   
+   </ul>
+    </nav>
+  </div>
+</footer>
+       
+ 
+
+</body>
+
+
+</html>
